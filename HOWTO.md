@@ -1,7 +1,9 @@
 # HowTo – Wie schreibe ich ein LaTeX-Dokument in zehn Schritten?
 
+Schauen Sie bitte unter https://github.com/sieversMartin/KiSte/blob/main/HOWTO.md für eine „schönere“ Fassung.
+
 ## Motivation
-Die folgenden zehn Schritte sollen dabei helfen, möglichst schnell ein LaTeX-Dokument für den Konferenzband "Recht und Religion" zu erstellen.
+Die folgenden zehn Schritte sollen dabei helfen, möglichst schnell ein LaTeX-Dokument für den Konferenzband „Recht und Religion“ zu erstellen.
 Es ist explizit *keine* Einführung in LaTeX allgemein.
 
 Ferner hat dieses HowTo nicht den Anspruch vollständig zu sein. Bitte schauen Sie auch immer in das Beispieldokument. Ergänzungswünsche und Fragen können gerne an martin.sievers@schoenerpublizieren.de geschickt werden.
@@ -11,8 +13,8 @@ Ferner hat dieses HowTo nicht den Anspruch vollständig zu sein. Bitte schauen S
 ```latex
 \documentclass[inproceedings,ngerman]{kiste}
 ... % Das ist der Vorspann (Layoutdefinition)
-\addbibresource{LitVZ.bib}% lädt Datensammlung für Literaturverzeichnis
-\addbibresource{Gerichtentscheidungen.bib}% lädt Datensammlung für Literaturverzeichnis
+\addbibresource{literatur.bib}% lädt Datensammlung für Literaturverzeichnis
+\addbibresource{gerichtentscheide.bib}% lädt Datensammlung für Literaturverzeichnis
 \begin{document}
 ...% Das ist das eigentliche Dokument (Text und Struktur)
 \end{document}
@@ -43,28 +45,11 @@ Alle Quellen sollten systematisch erfasst werden, z.B. in `Citavi` und als `.bib
 
 Ein Literaturverzeichnis kann mit `\printbibliography[nottype=jurisdiction]` erstellt werden. Dazu wird das Hilfsprogramm `biber` genutzt, das aus Overleaf heraus automatisch gestartet werden sollte.
 
-Das Prinzip der systemmatischen Erfassung gilt auch für Gerichtsentscheidungen. SIe können am einfachsten in einer zweiten `.bib`-Datei erfasst werden, z.B. `Gerichtsentscheidungen.bib` (siehe oben). Die Einträge nutzen spezielle Felder definiert:
-```latex
-@jurisdiction{BVerwG_1989,
-   gericht = {BVerwG},
-   dokumententyp = {Beschluss},
-   entscheidungsdatum = {1989-12-14},
-   aktenzeichen = {2 ER 301/89},
-   datenbank = {juris},
-}
+Das Prinzip der systematischen Erfassung gilt auch für Gerichtsentscheidungen. Sie können am einfachsten in einer zweiten `.bib`-Datei erfasst werden, z.B. `gerichtsentscheide.bib` (siehe oben). Es wurde vereinbart, dass die Entscheidungen direkt aus juris mit Hilfe des Citavi-Pickers übernommen und aus Citavi als `biblatex`-Datei exportiert werden. Die Feldnamen sind dadurch zwar nicht mehr „sprechend“, doch kann auf dieser Grundlage eine korrekte Ausgabe erzeugt werden.
 
-@jurisdiction{BVerfG_1986,
-   gericht = {BVerfG},
-   dokumententyp = {Einstweilige Anordnung},
-   entscheidungsdatum = {1986-01-03},
-   aktenzeichen = {1 BvQ 12/85},
-   fundstelle = {BVerfGE 71, 350},
-   options = {citedbypage},
-}
-```
 Die Liste der zitierten Gerichtsentscheidungen kann mit `\printjurisdiction` ausgegeben werden.
 
-2. Text immer "ganz normal" eingeben, d.h. Umlaute z.B. als ä, ö, ü, ß. Faustregel: Alle Zeichen der Tastatur können direkt genutzt werden.
+2. Text immer „ganz normal“ eingeben, d.h. Umlaute z.B. als ä, ö, ü, ß. Faustregel: Alle Zeichen der Tastatur können direkt genutzt werden.
 3. LaTeX-Sonderzeichen wie %, $, & oder \ maskieren mit Backslash, also z.B. `\%` für % oder `\&` für &
 4. Besondere Zeichen beachten:
    - Anführungszeichen über `\enquote{Hier steht etwas, das in Anführungszeichen erscheinen soll}` ==> korrekte, sprachabhängige Anführungszeichen
